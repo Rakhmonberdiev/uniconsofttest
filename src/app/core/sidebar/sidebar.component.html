@@ -1,0 +1,74 @@
+<div class="h-full text-white p-[16px] w-[240px]">
+  <div class="relative mb-6">
+    <button
+      (click)="toggleCreate()"
+      class="w-full flex items-center justify-between h-[40px] px-4 bg-[#7CD4FD] hover:bg-[#bbe9ff] cursor-pointer text-gray-600 font-medium rounded-[10px] transition"
+    >
+      Hujjat yaratish
+      <span [innerHTML]="safeIcons.get('chevronDown2')"></span>
+    </button>
+    @if(createOpen){
+    <ul
+      class="absolute z-20 mt-2 w-full bg-white text-black rounded-[10px] shadow-md divide-y divide-gray-200"
+    >
+      @for (opt of createOptions; track $index) {
+      <li
+        (click)="selectCreate(opt)"
+        class="px-4 py-2 hover:bg-gray-100 hover:rounded-[10px] cursor-pointer"
+      >
+        {{ opt.label }}
+      </li>
+      }
+    </ul>
+    }
+  </div>
+  @for (section of sections; track $index) {
+  <div class="mb-6 last:mb-0">
+    <h3 class="text-gray-200 text-[12px] font-medium uppercase">
+      {{ section.title }}
+    </h3>
+
+    <ul class="mt-[8px] space-y-[4px]">
+      @for (item of section.items; track $index) {
+      <li>
+        <a
+          (click)="toggle(item)"
+          [routerLink]="item.route"
+          routerLinkActive="bg-[rgba(255,255,255,0.2)] shadow-[0_1px_2px_0_rgba(16,24,40,0.1)] backdrop-blur-[56px] text-white"
+          class="flex items-center gap-[8px] py-[4px] px-[8px] rounded-[10px] hover:bg-[rgba(255,255,255,0.3)] hover:shadow-[0_1px_2px_0_rgba(16,24,40,0.1)] transition"
+        >
+          @if(item.iconKey){
+          <span [innerHTML]="safeIcons.get(item.iconKey)"></span>
+          }
+          <span class="font-normal text-[16px]">{{ item.label }}</span>
+          @if(item.children){
+          <span
+            class="w-4 h-4 text-white/70 transition-transform"
+            [class.rotate-180]="isExpanded(item)"
+            [innerHTML]="safeIcons.get('chevronDown')"
+          ></span>
+          }
+        </a>
+        @if(item.children && isExpanded(item)) {
+        <ul class="pl-[24px] mt-[4px] space-y-[4px]">
+          @for(child of item.children; track $index) {
+          <li>
+            <a
+              [routerLink]="child.route"
+              class="flex items-center gap-[8px] py-[4px] px-[8px] rounded-[10px] hover:bg-[rgba(255,255,255,0.3)] transition"
+            >
+              @if(child.iconKey){
+              <span [innerHTML]="safeIcons.get(child.iconKey)"></span>
+              }
+              <span class="font-normal text-[16px]">{{ child.label }}</span>
+            </a>
+          </li>
+          }
+        </ul>
+        }
+      </li>
+      }
+    </ul>
+  </div>
+  }
+</div>

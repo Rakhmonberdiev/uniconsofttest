@@ -1,1 +1,18 @@
 @use "tailwindcss";
+@layer utilities;
+:root {
+  --border-color: rgba(255, 255, 255, 0.12);
+}
+body {
+  background-image: url("/images/bg/body-bg.jpg");
+  background-size: cover;
+  background-position: top center;
+  background-repeat: repeat-y;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: -1;
+}

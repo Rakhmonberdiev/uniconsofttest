@@ -1,0 +1,18 @@
+<div class="h-full bg-transparent flex flex-col items-center">
+  <div class="pt-[12px] pb-[12px] border-[var(--border-color)] border-b">
+    <a
+      [routerLink]="'/settings'"
+      [title]="'Sozlamalar'"
+      class="w-[32px] h-[32px] flex items-center justify-center bg-[#36BFFA] hover:bg-[#2AA5E0] transition rounded-[8px]"
+      [innerHTML]="safeIcons.get('settings')"
+    ></a>
+  </div>
+  @for (item of items; track $index) {
+  <a
+    [routerLink]="item.route"
+    [title]="item.tooltip"
+    class="w-[32px] h-[32px] mt-[12px] flex items-center justify-center bg-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.3)] transition rounded-full"
+    [innerHTML]="safeIcons.get(item.iconKey)"
+  ></a>
+  }
+</div>

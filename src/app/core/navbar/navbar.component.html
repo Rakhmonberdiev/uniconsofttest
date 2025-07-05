@@ -1,0 +1,93 @@
+<header
+  class="flex w-full flex-col py-3 px-3 min-h-[56px] text-white lg:flex-row lg:py-0 lg:items-center"
+>
+  <div class="flex items-center shrink-0 gap-3 w-[240px]">
+    <button class="text-2xl cursor-pointer" (click)="toggleSidebar.emit()">
+      ☰
+    </button>
+    <img src="images/icons/logo.png" alt="Logo" class="w-[28px] h-[28px]" />
+    <span class="text-xl font-bold">Digital Office</span>
+  </div>
+
+  <div
+    class="w-full flex flex-col lg:flex-row items-center py-3 lg:py-0 justify-between gap-3"
+  >
+    <div
+      class="flex items-center text-white w-full lg:w-[600px] px-3 h-[32px] bg-[rgba(255,255,255,0.2)] shadow-[0_1px_2px_rgba(16,24,40,0.05)] hover:bg-[rgba(255,255,255,0.3)] transition duration-300 backdrop-blur-[28px] rounded-full"
+    >
+      <input
+        type="text"
+        placeholder="Search"
+        class="flex-1 bg-transparent placeholder-[rgba(255,255,255,0.4)] h-full outline-none"
+      />
+      <button [innerHTML]="searchIcon"></button>
+    </div>
+
+    <div class="flex flex-col lg:flex-row items-center gap-3 text-sm h-full">
+      <div class="flex items-center gap-3">
+        <span class="text-[36px] font-light">
+          {{ currentTime }}
+        </span>
+
+        <button
+          class="p-2 cursor-pointer hover:bg-[rgba(54,191,250,0.4)] rounded-md transition duration-300"
+          [innerHTML]="galleryIcon"
+        ></button>
+        <button
+          class="p-2 cursor-pointer hover:bg-[rgba(54,191,250,0.4)] rounded-md transition duration-300"
+          [innerHTML]="eyeIcon"
+        ></button>
+        <button
+          class="p-2 cursor-pointer hover:bg-[rgba(54,191,250,0.4)] rounded-md transition duration-300"
+          [innerHTML]="focusIcon"
+        ></button>
+        <button
+          class="p-2 cursor-pointer hover:bg-[rgba(54,191,250,0.4)] rounded-md transition duration-300"
+          [innerHTML]="gridIcon"
+        ></button>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-3">
+          <img
+            src="images/icons/avatar.png"
+            draggable="false"
+            class="max-h-[32px]"
+            alt="avatar"
+          />
+          <span class="text-[14px] font-medium uppercase">Abbos Xazratov</span>
+        </div>
+        <div class="relative">
+          <button
+            (click)="toggleLang()"
+            class="flex items-center gap-1 h-[36px] px-2 cursor-pointer bg-[rgba(54,191,250,0.4)] hover:bg-[rgba(54,191,250,0.6)] transition duration-300 rounded-full px-2 focus:outline-none"
+          >
+            <img
+              [src]="selected.flag"
+              class="h-[24px] w-[24px]"
+              alt="{{ selected.code }}"
+            />
+            <span class="text-[14px] font-medium">{{ selected.label }}</span>
+            <span [innerHTML]="arrowIcon"></span>
+          </button>
+
+          @if(isLangOpen){
+          <ul
+            class="absolute right-0 mt-1 w-40 bg-white/90 text-black rounded-md shadow-md overflow-hidden"
+          >
+            @for (lang of languages; track $index) {
+            <li
+              (click)="selectLang(lang)"
+              class="flex items-center gap-2 px-3 py-2 hover:bg-gray-200 cursor-pointer"
+            >
+              <img [src]="lang.flag" class="w-5 h-4" alt="{{ lang.code }}" />
+              <span class="text-sm">{{ lang.label }}</span>
+            </li>
+            }
+          </ul>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
