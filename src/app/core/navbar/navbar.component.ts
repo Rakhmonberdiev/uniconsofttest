@@ -2,6 +2,7 @@ import { Component, inject, OnDestroy, OnInit, output } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { interval, Subscription } from 'rxjs';
 import { navbarSvgIcons } from './navbar-svg-icons';
+import { AuthService } from '../../_services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -26,8 +27,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ];
   selected = this.languages[0];
   private sanitizer = inject(DomSanitizer);
-
+  authService = inject(AuthService);
   toggleSidebar = output();
+
   ngOnInit(): void {
     this.currentTime = this.getFormattedTime();
     this.sub = interval(1000).subscribe(() => {
@@ -61,5 +63,16 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
   private getFormattedTime(): string {
     return new Date().toTimeString().slice(0, 5);
+  }
+
+  logout() {
+    this.authService.logout().subscribe({
+      next: () => {
+        this.authService.logout();
+      },
+      error: () => {
+        this.authService.currentUser.set(null);
+      },
+    });
   }
 }

@@ -55,7 +55,11 @@
             class="max-h-[32px]"
             alt="avatar"
           />
-          <span class="text-[14px] font-medium uppercase">Abbos Xazratov</span>
+          <span
+            class="text-[14px] font-medium uppercase cursor-pointer"
+            (click)="logout()"
+            >{{ authService.currentUser()?.fullName }}</span
+          >
         </div>
         <div class="relative">
           <button
