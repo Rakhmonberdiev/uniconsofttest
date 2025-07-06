@@ -7,7 +7,7 @@ export const documentTypeLabels: Record<string, string> = {
   MinisterCabinet: 'Vazirlar Mahkamasi hujjatlari',
   GovernmentCommission: 'Hukumat komissiyasi',
   Internal: 'Ichki hujjatlar',
-  Audit: "Audit ko'rsatma va takliflar",
+  Audit: 'Audit korsatma va takliflar',
 };
 export const docsvgIcons = {
   President: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

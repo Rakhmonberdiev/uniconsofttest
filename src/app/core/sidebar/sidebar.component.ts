@@ -4,6 +4,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { SIDEBAR_NAV_DATA } from './sidebar-data';
 import { MenuItem } from './sidebar-nav-model';
+import { DocumentService } from '../../_services/document.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,12 +16,22 @@ export class SidebarComponent implements OnInit {
   sections = SIDEBAR_NAV_DATA;
   safeIcons = new Map<keyof typeof sidebarIcons, SafeHtml>();
   private sanitizer = inject(DomSanitizer);
+  private documentService = inject(DocumentService);
   expanded = new Set<string>();
   createOpen = false;
   createOptions = [
-    { label: 'Yangi hujjat', action: () => console.log('Yangi hujjat') },
-    { label: 'Shablon tanlash', action: () => console.log('Shablon') },
-    { label: 'Import hujjat', action: () => console.log('Import') },
+    {
+      label: 'Hujjat A',
+      action: () => this.createTestDoc('President'),
+    },
+    {
+      label: 'Hujjat C',
+      action: () => this.createTestDoc('MinisterCabinet'),
+    },
+    {
+      label: 'Hujjat B',
+      action: () => this.createTestDoc('GovernmentCommission'),
+    },
   ];
   ngOnInit(): void {
     for (const key of Object.keys(sidebarIcons) as Array<
@@ -47,5 +58,14 @@ export class SidebarComponent implements OnInit {
   selectCreate(opt: { label: string; action: () => void }) {
     this.createOpen = false;
     opt.action();
+  }
+
+  createTestDoc(type: string) {
+    this.documentService.postDocument(type).subscribe({
+      next: () => {},
+      error: (err) => {
+        console.error('ошибка:', err);
+      },
+    });
   }
 }

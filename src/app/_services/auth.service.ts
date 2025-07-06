@@ -10,7 +10,7 @@ interface User {
 export class AuthService {
   currentUser = signal<User | null>(null);
   private http = inject(HttpClient);
-  private readonly baseUrl = environment.apiUrl;
+  private readonly baseUrl = environment.apiUrl + 'api/';
   loadUser() {
     return this.http
       .get<User>(this.baseUrl + 'profile', { withCredentials: true })
