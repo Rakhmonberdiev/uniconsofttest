@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -7,9 +7,10 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../../_services/auth.service';
 import { Router } from '@angular/router';
+import { LoginIllustrationComponent } from '../../../shared/login-illustration/login-illustration.component';
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, LoginIllustrationComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   form!: FormGroup;
   error: string | null = null;
   isQrMode = true;
+  isMobile = false;
   private fb = inject(FormBuilder);
   authService = inject(AuthService);
   private router = inject(Router);
@@ -26,7 +28,16 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/']);
       return;
     }
+    this.updateDeviceMode();
     this.initForm();
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    this.updateDeviceMode();
+  }
+  updateDeviceMode() {
+    this.isMobile = window.innerWidth < 768;
   }
   toggleMode() {
     this.isQrMode = !this.isQrMode;
