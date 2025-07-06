@@ -1,0 +1,13 @@
+<div
+  class="relative bg-card rounded-[28px] min-w-[256px] pl-[12px] pb-[12px] min-h-[90px] mx-auto"
+>
+  <div class="flex-1">
+    <p class="text-[36px] font-normal text-red-500">{{ count() }}</p>
+    <p class="text-[16px] font-normal text-black">{{ label() }}</p>
+  </div>
+  <div
+    class="absolute top-0 right-0 w-[40px] h-[40px] rounded-full bg-[rgb(255,255,255,0.4)] backdrop-blur-[20px] flex items-center justify-center"
+  >
+    <span [innerHTML]="safeIconUrl"></span>
+  </div>
+</div>

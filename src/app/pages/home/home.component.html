@@ -1,0 +1,33 @@
+<!-- home.component.html -->
+<div
+  class="flex items-center bg-white rounded-[20px] p-[12px] h-[62px] w-full gap-[8px]"
+>
+  @for (tab of tabs; track $index) {
+  <div
+    (click)="selectTab(tab)"
+    class="text-center cursor-pointer px-[12px] py-[8px] select-none rounded-full text-gray-600 transition-colors duration-200"
+    [ngClass]="
+      tab === activeTab ? 'bg-blue-400 text-white' : ' hover:bg-blue-100'
+    "
+  >
+    <span class="">{{ tab }}</span>
+  </div>
+  }
+</div>
+
+<!-- пример переключения контента -->
+<div class="mt-6">
+  @switch (activeTab) { @case ("Yangiliklar") {
+  <section>
+    <p>Yangiliklar</p>
+  </section>
+  } @case ("Statistika") {
+  <section>
+    <app-statistics />
+  </section>
+  } @case ("So'rovnoma") {
+  <section>
+    <p>So'rovnoma</p>
+  </section>
+  }}
+</div>

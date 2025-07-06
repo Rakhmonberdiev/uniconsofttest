@@ -1,3 +1,9 @@
-<div class="h-[2000px]">
-  <p>statistics works!</p>
+<div class="flex flex-wrap gap-3 justify-center md:justify-start">
+  @for (doc_card of documents; track $index) {
+  <app-document-card
+    [label]="documentTypeLabels[doc_card.type]"
+    [count]="doc_card.count"
+    [icon]="docsvgIcons[doc_card.type]"
+  />
+  }
 </div>

@@ -4,7 +4,7 @@ export const SIDEBAR_NAV_DATA: MenuSection[] = [
   {
     title: 'ICHKI HUJJATLAR',
     items: [
-      { label: 'Bosh sahifa', route: '/statistics', iconKey: 'home' },
+      { label: 'Bosh sahifa', route: '/home', iconKey: 'home' },
       { label: 'Taqvim', route: '/calendar', iconKey: 'calendar' },
       { label: 'Mening hujjatlar', route: '/my-documents', iconKey: 'myDoc' },
       {
