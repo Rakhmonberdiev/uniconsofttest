@@ -1,4 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { DocumentService } from '../../_services/document.service';
 
@@ -14,7 +20,7 @@ export class WeeklyDocumentChartComponent implements OnInit {
   chartRef!: ElementRef<HTMLCanvasElement>;
   chart!: Chart;
   currentMode: 'last' | 'current' = 'last';
-  constructor(private docService: DocumentService) {}
+  private docService = inject(DocumentService);
   ngOnInit(): void {
     this.loadData(this.currentMode);
   }
