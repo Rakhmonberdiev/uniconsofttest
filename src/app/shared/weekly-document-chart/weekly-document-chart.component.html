@@ -1,0 +1,32 @@
+<div class="relative rounded-[20px] shadow-md max-h-[324px] max-w-[524px]">
+  <div
+    class="flex items-center rounded-t-[10px] md:rounded-t-[20px] justify-between backdrop-blur-[24px] p-[8px] bg-gradient"
+  >
+    <h3 class="text-[14px] md:text-[16px] font-medium text-black">
+      Kelib tushgan hujjatlar
+    </h3>
+    <div class="flex space-x-2">
+      <button
+        (click)="toggle('last')"
+        [class.bg-blue-900]="currentMode === 'last'"
+        [class.text-white]="currentMode === 'last'"
+        class="p-[6px] text-[10px] md:p-[8px] md:text-[14px] cursor-pointer border-gray-400 font-normal rounded-full border transition-colors"
+      >
+        O'TGAN HAFTA
+      </button>
+      <button
+        (click)="toggle('current')"
+        [class.bg-blue-900]="currentMode === 'current'"
+        [class.text-white]="currentMode === 'current'"
+        class="p-[6px] text-[10px] md:p-[8px] md:text-[14px] cursor-pointer border-gray-400 font-normal rounded-full border transition-colors"
+      >
+        SHU HAFTA
+      </button>
+    </div>
+  </div>
+  <div
+    class="bg-white rounded-b-[10px] md:rounded-b-[20px] px-[4px] py-[6px] md:px-[8px] md:py-[12px]"
+  >
+    <canvas #weeklyChart class="w-full h-full"></canvas>
+  </div>
+</div>

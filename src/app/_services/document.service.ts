@@ -21,4 +21,11 @@ export class DocumentService {
       { withCredentials: true }
     );
   }
+
+  getWeeklyStatistics(week: 'last' | 'current') {
+    return this.http.get<{ day: string; count: number }[]>(
+      `${this.baseUrl}weekly-statistics?week=${week}`,
+      { withCredentials: true }
+    );
+  }
 }
