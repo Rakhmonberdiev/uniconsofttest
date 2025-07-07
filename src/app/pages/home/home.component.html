@@ -1,33 +1,45 @@
-<!-- home.component.html -->
-<div
-  class="flex items-center bg-white rounded-[20px] p-[12px] h-[62px] w-full gap-[8px]"
->
-  @for (tab of tabs; track $index) {
-  <div
-    (click)="selectTab(tab)"
-    class="text-center cursor-pointer px-[12px] py-[8px] select-none rounded-full text-gray-600 transition-colors duration-200"
-    [ngClass]="
-      tab === activeTab ? 'bg-blue-400 text-white' : ' hover:bg-blue-100'
-    "
-  >
-    <span class="">{{ tab }}</span>
-  </div>
-  }
-</div>
+<div class="flex flex-col lg:flex-row gap-[12px]">
+  <!-- Основной контент с табами и секциями -->
+  <div class="flex-1">
+    <!-- Таб-переключатель -->
+    <div
+      class="flex items-center bg-white rounded-[20px] p-[12px] h-[62px] w-full gap-[8px]"
+    >
+      @for (tab of tabs; track $index) {
+      <div
+        (click)="selectTab(tab)"
+        class="text-center cursor-pointer px-[12px] py-[8px] select-none rounded-full text-gray-600 transition-colors duration-200"
+        [ngClass]="
+          tab === activeTab ? 'bg-blue-400 text-white' : 'hover:bg-blue-100'
+        "
+      >
+        <span class="">{{ tab }}</span>
+      </div>
+      }
+    </div>
 
-<!-- пример переключения контента -->
-<div class="mt-6">
-  @switch (activeTab) { @case ("Yangiliklar") {
-  <section>
-    <p>Yangiliklar</p>
-  </section>
-  } @case ("Statistika") {
-  <section>
-    <app-statistics />
-  </section>
-  } @case ("So'rovnoma") {
-  <section>
-    <p>So'rovnoma</p>
-  </section>
-  }}
+    <!-- Контент таба -->
+    <div class="mt-6">
+      @switch (activeTab) { @case ("Yangiliklar") {
+      <section><p>Yangiliklar</p></section>
+      } @case ("Statistika") {
+      <section><app-statistics /></section>
+      } @case ("So'rovnoma") {
+      <section><p>So'rovnoma</p></section>
+      } }
+    </div>
+  </div>
+
+  <!-- Виджеты -->
+  <div class="w-full lg:w-[260px] shrink-0">
+    <div class="bg-white rounded-[20px] p-4 shadow">
+      <p class="font-semibold">📌 Виджет #1</p>
+      <p class="text-sm text-gray-500">Контент виджета...</p>
+    </div>
+
+    <div class="bg-white rounded-[20px] p-4 shadow mt-4">
+      <p class="font-semibold">📊 Виджет #2</p>
+      <p class="text-sm text-gray-500">Ещё один...</p>
+    </div>
+  </div>
 </div>

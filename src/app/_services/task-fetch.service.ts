@@ -5,6 +5,11 @@ export interface DeadlineStatDto {
   label: string;
   count: number;
 }
+
+export interface TaskTypeStatDto {
+  type: 'Signing' | 'Reference' | 'Agreement' | 'Control';
+  count: number;
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -16,6 +21,15 @@ export class TaskFetchService {
     return this.http.get<DeadlineStatDto[]>(
       `${this.baseUrl}incoming/deadline-statistics`,
       { withCredentials: true }
+    );
+  }
+
+  getTaskTypeStatistics() {
+    return this.http.get<TaskTypeStatDto[]>(
+      `${this.baseUrl}incoming/statistics`,
+      {
+        withCredentials: true,
+      }
     );
   }
 }

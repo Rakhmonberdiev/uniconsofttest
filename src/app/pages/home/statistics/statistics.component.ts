@@ -7,16 +7,11 @@ import {
 } from './doc-stat-icons';
 import { DocumentService } from '../../../_services/document.service';
 import { DocumentSignalService } from '../../../_services/document-signal.service';
-import { WeeklyDocumentChartComponent } from '../../../shared/weekly-document-chart/weekly-document-chart.component';
-import { ExecutionDeadlineChartComponent } from '../../../shared/execution-deadline-chart/execution-deadline-chart.component';
+import { IncomingTasksComponent } from './incoming-tasks/incoming-tasks.component';
 
 @Component({
   selector: 'app-statistics',
-  imports: [
-    DocumentCardComponent,
-    WeeklyDocumentChartComponent,
-    ExecutionDeadlineChartComponent,
-  ],
+  imports: [DocumentCardComponent, IncomingTasksComponent],
   templateUrl: './statistics.component.html',
   styleUrl: './statistics.component.scss',
 })
