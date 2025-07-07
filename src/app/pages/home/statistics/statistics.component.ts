@@ -8,10 +8,15 @@ import {
 import { DocumentService } from '../../../_services/document.service';
 import { DocumentSignalService } from '../../../_services/document-signal.service';
 import { IncomingTasksComponent } from './incoming-tasks/incoming-tasks.component';
+import { OutgoingTasksComponent } from './outgoing-tasks/outgoing-tasks.component';
 
 @Component({
   selector: 'app-statistics',
-  imports: [DocumentCardComponent, IncomingTasksComponent],
+  imports: [
+    DocumentCardComponent,
+    IncomingTasksComponent,
+    OutgoingTasksComponent,
+  ],
   templateUrl: './statistics.component.html',
   styleUrl: './statistics.component.scss',
 })

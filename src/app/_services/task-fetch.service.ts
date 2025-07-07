@@ -10,6 +10,10 @@ export interface TaskTypeStatDto {
   type: 'Signing' | 'Reference' | 'Agreement' | 'Control';
   count: number;
 }
+export interface TaskStat {
+  label: string;
+  count: number;
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -31,5 +35,10 @@ export class TaskFetchService {
         withCredentials: true,
       }
     );
+  }
+  getTaskStats() {
+    return this.http.get<TaskStat[]>(this.baseUrl + 'outgoing/statistics', {
+      withCredentials: true,
+    });
   }
 }
