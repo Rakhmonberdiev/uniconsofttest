@@ -1,12 +1,5 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  HostListener,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { Chart, registerables, UpdateModeEnum } from 'chart.js';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Chart, registerables } from 'chart.js';
 import { DocumentService } from '../../_services/document.service';
 
 Chart.register(...registerables);
