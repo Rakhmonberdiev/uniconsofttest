@@ -1,10 +1,11 @@
 import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { CalendarComponent } from '../../shared/calendar/calendar.component';
 
 @Component({
   selector: 'app-home',
-  imports: [NgClass, StatisticsComponent],
+  imports: [NgClass, StatisticsComponent, CalendarComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

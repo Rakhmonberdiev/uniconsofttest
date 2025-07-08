@@ -1,0 +1,70 @@
+<div
+  class="w-full h-auto bg-black/30 backdrop-blur-[80px] rounded-[20px] p-4 text-white"
+>
+  <div class="flex items-center justify-between mb-4">
+    <div class="text-[16px] font-medium">{{ monthLabel }}</div>
+    <div class="w-[55px] flex items-center justify-between text-[#36BFFA]">
+      <svg
+        (click)="prevMonth()"
+        class="w-5 h-5 cursor-pointer"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M15 19l-7-7 7-7"
+        />
+      </svg>
+
+      <svg
+        (click)="nextMonth()"
+        class="w-5 h-5 cursor-pointer"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 5l7 7-7 7"
+        />
+      </svg>
+    </div>
+  </div>
+  <div class="grid grid-cols-7 text-xs uppercase mb-2 text-white/70">
+    @for (label of dayLabels; track $index) {
+    <div class="text-center">{{ label }}</div>
+    }
+  </div>
+  <div class="grid grid-cols-7 gap-1 mb-4">
+    @for (week of weeks; track $index) {
+    <ng-container>
+      @for (day of week; track $index) {
+      <ng-container>
+        <button
+          class="w-8 h-8 flex items-center justify-center rounded-full"
+          [class.bg-blue-400]="
+            day?.toDateString() === selectedDate.toDateString()
+          "
+        >
+          <span class="text-[16px]" [class.text-transparent]="!day">{{
+            day?.getDate()
+          }}</span>
+        </button>
+      </ng-container>
+      }
+    </ng-container>
+    }
+  </div>
+  <div class="flex items-center justify-between">
+    <span class="text-[18px] font-semibold">Time</span>
+    <span
+      class="shadow-md px-[8px] py-[6px] rounded-[10px] text-white text-[18px]"
+      >{{ selectedDate | date : "HH:mm" }}</span
+    >
+  </div>
+</div>
