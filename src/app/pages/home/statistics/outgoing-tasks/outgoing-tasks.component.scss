@@ -3,3 +3,25 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
+.shake-container > [cdkDrag] {
+  animation: shake 1.5s ease-in-out infinite;
+}
+@keyframes shake {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translate(-2px, 0) rotate(-1deg);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate(2px, 0) rotate(1deg);
+  }
+}

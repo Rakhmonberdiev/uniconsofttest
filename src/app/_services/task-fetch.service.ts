@@ -14,6 +14,10 @@ export interface TaskStat {
   label: string;
   count: number;
 }
+export interface TaskOrder {
+  label: string;
+  position: number;
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -38,6 +42,12 @@ export class TaskFetchService {
   }
   getTaskStats() {
     return this.http.get<TaskStat[]>(this.baseUrl + 'outgoing/statistics', {
+      withCredentials: true,
+    });
+  }
+
+  saveOrder(orders: TaskOrder[]) {
+    return this.http.post(this.baseUrl + 'order', orders, {
       withCredentials: true,
     });
   }

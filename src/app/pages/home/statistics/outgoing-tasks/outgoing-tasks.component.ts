@@ -3,12 +3,17 @@ import { Component, inject, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import {
   TaskFetchService,
+  TaskOrder,
   TaskStat,
 } from '../../../../_services/task-fetch.service';
-
+import {
+  CdkDragDrop,
+  DragDropModule,
+  moveItemInArray,
+} from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-outgoing-tasks',
-  imports: [],
+  imports: [DragDropModule],
   templateUrl: './outgoing-tasks.component.html',
   styleUrl: './outgoing-tasks.component.scss',
 })
@@ -18,7 +23,7 @@ export class OutgoingTasksComponent implements OnInit {
   settingIcon!: SafeHtml;
   private http = inject(HttpClient);
   private taskFetchService = inject(TaskFetchService);
-
+  editMode = false;
   models: TaskStat[] = [];
   labelMap: Record<string, string> = {
     all: 'Barcha topshiriqlar',
@@ -43,6 +48,23 @@ export class OutgoingTasksComponent implements OnInit {
   }
   getLabel(label: string): string {
     return this.labelMap[label] || label;
+  }
+  toggleEditMode(): void {
+    if (this.editMode) {
+      this.saveOrder();
+    }
+    this.editMode = !this.editMode;
+  }
+  drop(event: CdkDragDrop<TaskStat[]>): void {
+    moveItemInArray(this.models, event.previousIndex, event.currentIndex);
+  }
+
+  saveOrder(): void {
+    const orders: TaskOrder[] = this.models.map((s, idx) => ({
+      label: s.label,
+      position: idx,
+    }));
+    this.taskFetchService.saveOrder(orders).subscribe(() => {});
   }
   private loadSvg(filename: string, target: 'icon' | 'settingIcon'): void {
     const path = `images/icons/${filename}`;

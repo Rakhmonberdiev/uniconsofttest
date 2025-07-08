@@ -5,15 +5,28 @@
     Yuborilgan topshiriqlar
   </h3>
   <button
+    (click)="toggleEditMode()"
+    [class.opacity-50]="editMode"
     class="shadow-md p-[8px] rounded-[8px] bg-[#0BA5EC] cursor-pointer hover:bg-[#70b0ce] transition duration-200"
   >
     <span [innerHTML]="settingIcon"></span>
   </button>
 </div>
 
-<div class="flex flex-wrap gap-3 justify-center md:justify-start">
+<div
+  class="flex flex-wrap gap-3 justify-center md:justify-start"
+  cdkDropList
+  [class.shake-container]="editMode"
+  [cdkDropListOrientation]="'mixed'"
+  [cdkDropListDisabled]="!editMode"
+  (cdkDropListDropped)="drop($event)"
+>
   @for (item of models; track $index) {
-  <div class="relative bg-card rounded-[28px] w-[323px] pl-[12px] h-[90px]">
+  <div
+    cdkDrag
+    [class.cursor-move]="editMode"
+    class="relative bg-card rounded-[28px] w-[323px] pl-[12px] h-[90px]"
+  >
     <div class="flex-1">
       <p class="text-[36px] font-normal text-black">{{ item.count }}</p>
       <p class="text-[16px] font-normal text-black">
