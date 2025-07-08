@@ -1,0 +1,40 @@
+<div class="flex flex-none items-center justify-start space-x-[16px]">
+  <h3 class="font-normal text-white text-[18px] md:text-[22px] lg:text-[26px]">
+    Qonunchilikdagi yangiliklar (lex.uz)
+  </h3>
+  <button
+    class="w-[40px] h-[40px] rounded-full bg-[rgb(255,255,255,0.4)] backdrop-blur-[20px] flex items-center justify-center"
+  >
+    <span [innerHTML]="icon"></span>
+  </button>
+</div>
+<div class="relative">
+  <div
+    class="bg-white flex flex-col scrollbar-thin scrollbar-thumb-[#98A2B3] scrollbar-track-rounded-full scrollbar-track-[#ffffff00] w-full space-y-[16px] p-[16px] rounded-[20px] max-h-[400px] overflow-y-auto"
+  >
+    @for (item of newsList; track $index) {
+    <div
+      class="flex flex-row space-x-[16px] border-b border-[#E4E7EC] pb-[16px]"
+    >
+      <div
+        class="flex items-center flex-none justify-center w-[48px] h-[48px] bg-[#EAECF5] rounded-full"
+      >
+        <span [innerHTML]="doc"></span>
+      </div>
+
+      <div class="w-full h-full">
+        <h4 class="text-[#026AA2] font-semibold">{{ item.title }}</h4>
+        <p>{{ item.subtitle }}</p>
+      </div>
+      <div
+        class="flex items-center justify-center flex-none w-[40px] h-[40px] bg-[#EAECF5] rounded-full"
+      >
+        <span [innerHTML]="icon"></span>
+      </div>
+    </div>
+    }
+  </div>
+  <div
+    class="absolute bottom-0 left-0 w-full h-[100px] overlay rounded-b-[20px]"
+  ></div>
+</div>

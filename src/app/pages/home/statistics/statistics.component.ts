@@ -9,6 +9,7 @@ import { DocumentService } from '../../../_services/document.service';
 import { DocumentSignalService } from '../../../_services/document-signal.service';
 import { IncomingTasksComponent } from './incoming-tasks/incoming-tasks.component';
 import { OutgoingTasksComponent } from './outgoing-tasks/outgoing-tasks.component';
+import { LexNewsComponent } from './lex-news/lex-news.component';
 
 @Component({
   selector: 'app-statistics',
@@ -16,6 +17,7 @@ import { OutgoingTasksComponent } from './outgoing-tasks/outgoing-tasks.componen
     DocumentCardComponent,
     IncomingTasksComponent,
     OutgoingTasksComponent,
+    LexNewsComponent,
   ],
   templateUrl: './statistics.component.html',
   styleUrl: './statistics.component.scss',
